@@ -7,11 +7,15 @@
     "summary":"Hospital Managment Systême",
     "version": '1.0.0',
     'Descriptions':'***** Hospital Managment Systême *****',
-    "depends": [],
+    "depends": [
+        'mail',
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/menu.xml",
-        "views/patient.xml",
+        "views/patient_view.xml",
+        "views/female_patient_view.xml",
+
     ],
     'demo': [],
     'auto_instale': False,
