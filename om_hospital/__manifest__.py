@@ -1,4 +1,5 @@
 
+
 {
     "name": 'Hospital Management',
     "author": "Mohamed BA",
@@ -15,7 +16,7 @@
         "views/menu.xml",
         "views/patient_view.xml",
         "views/female_patient_view.xml",
-
+        "views/appointment_view.xml",
     ],
     'demo': [],
     'auto_instale': False,
