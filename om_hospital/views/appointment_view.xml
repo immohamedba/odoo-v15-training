@@ -4,12 +4,22 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree create="1" delete="0" duplicate="0">
+            <tree create="1" delete="0" duplicate="0"
+                  decoration-success="state == 'done'"
+                  decoration-danger="state == 'cancel'">
                 <field name="patient_id"/>
-                <field name="ref"/>
+                <field name="ref" optional="hide"/>
                 <field name="gender"/>
                 <field name="appointment_time"/>
-                <field name="booking_time"/>
+                <field name="booking_date" optional="show"/>
+                <field name="activity_ids" widget="list_activity"/>
+                <field name="state"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'draft'"
+                       decoration-danger="state == 'cancel'"
+                       decoration-warning="state== 'in_consultation'"
+                       widget="badge"
+                />
             </tree>
         </field>
     </record>
@@ -18,22 +28,38 @@
         <field name="model">hospital.appointment</field>
         <field name="name">hospital.appointment.form</field>
         <field name="arch" type="xml">
-            <form >
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" nobel="1" options="{'clickable': '1'}"
+                           statusbar_visible="draft,in_consultation,done"/>
+                </header>
                 <sheet>
+                    <div>
+                        <h2>
+                            <field name="priority" widget="priority"/>
+                        </h2>
+                    </div>
                     <group>
-                        <group>clear
+                        <group>
                             <field name="patient_id"/>
                             <field name="ref"/>
                             <field name="gender"/>
-                            <field name="appointment_time"/>
-                            <field name="booking_time"/>
+                            <field name="booking_date"/>
                         </group>
                         <group>
+                            <field name="appointment_time"/>
+                            <button name="action_test" string="Object Button" type="object"
+                                    confirm="Are you sure to execute python code"
+                                    class="oe_highlight"/>
+                            <button name="%(om_hospital.action_hospital_patient)d" string="Action Button"
+                                    confirm="Are you sure to open the patient"
+                                    help="on clicking this button, you will be redirect to patient records"
+                                    type="action" class="oe_highlight"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Prescription" name="prescription">
-                             <field name="prescription" placeholder="Enter your prescription"/>
+                            <field name="prescription" placeholder="Enter your prescription"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
 

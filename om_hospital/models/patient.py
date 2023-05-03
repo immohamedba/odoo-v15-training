@@ -2,7 +2,7 @@ from datetime import date
 from odoo import fields, models, api
 
 
-class EstateProperty(models.Model):
+class HospitalPatient(models.Model):
     _name = "hospital.patient"
     _description = "Hospital Patient "
     _inherit = ['mail.thread', 'mail.activity.mixin']
