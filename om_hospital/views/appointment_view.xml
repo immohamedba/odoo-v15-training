@@ -6,11 +6,15 @@
         <field name="arch" type="xml">
             <tree create="1" delete="0" duplicate="0"
                   decoration-success="state == 'done'"
-                  decoration-danger="state == 'cancel'">
+                  decoration-danger="state == 'cancel'"
+                  sample="1"
+                  multi_edit="1"
+            >
                 <field name="patient_id"/>
                 <field name="ref" optional="hide"/>
                 <field name="gender"/>
                 <field name="appointment_time"/>
+                <field name="doctor_id" widget="many2one_avatar_user"/>
                 <field name="booking_date" optional="show"/>
                 <field name="activity_ids" widget="list_activity"/>
                 <field name="state"
@@ -30,8 +34,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" nobel="1" options="{'clickable': '1'}"
-                           statusbar_visible="draft,in_consultation,done"/>
+                    <button name="action_in_draft" string="Reset to draft" type="object" states="cancel"/>
+                    <button name="action_in_consultation" string="In consultation" type="object" states="draft"/>
+                    <button name="action_in_done" string="Mark as done" data-hotkey="s" type="object" states="in_consultation"/>
+                    <button name="action_in_cancel" string="Canceled" data-hotkey="z" type="object" states="in_consultation,done,draft"/>
+
+                    <field name="state" widget="statusbar" nobel="1"
+                    statusbar_visible="draft,in_consultation,done"/>
                 </header>
                 <sheet>
                     <div>
@@ -41,10 +50,11 @@
                     </div>
                     <group>
                         <group>
-                            <field name="patient_id"/>
+                            <field name="patient_id" default_focus="1"/>
                             <field name="ref"/>
                             <field name="gender"/>
                             <field name="booking_date"/>
+                            <field name="doctor_id" widget="many2one_avatar"/>
                         </group>
                         <group>
                             <field name="appointment_time"/>
@@ -59,7 +69,8 @@
                     </group>
                     <notebook>
                         <page string="Prescription" name="prescription">
-                            <field name="prescription" placeholder="Enter your prescription"/>
+                            <field name="prescription" placeholder="Enter your prescription"
+                                   option="{'collaborative':true 'resizable' :true}"/>
                         </page>
                         <page string="Pharmacy" name="pharmacy">
 
