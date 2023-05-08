@@ -9,7 +9,7 @@
     "version": '1.0.0',
     'Descriptions':'***** Hospital Managment Systême *****',
     "depends": [
-        'mail',
+        'mail','product',
     ],
     "data": [
         "security/ir.model.access.csv",

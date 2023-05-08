@@ -25,6 +25,7 @@ class HospitalAppointment(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled')], default='draft', bstring="Status", required=True)
     doctor_id = fields.Many2one('res.users', string='Doctor')
+    pharmacy_line_ids = fields.One2many('appointment.pharmacy.lines', 'appointment_id', string='Pharmacy lines')
 
     @api.onchange('patient_id')
     def onchange_patient_id(self):
@@ -35,7 +36,7 @@ class HospitalAppointment(models.Model):
         return {
             'effect': {
                 'fadeout': 'slow',
-                'message': ' Click succesfull',
+                'message': ' Click successfully',
                 'type': 'rainbow_man'
             }
         }

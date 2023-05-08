@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_project_assignment_root"
+              name="Project Assignment"
+              web_icon="project_assignment,static/description/pa_icon.png"
+              sequence="0"/>
+
+    <menuitem id="menu_project_assignment_master"
+              name="Project Assignment"
+              parent="menu_project_assignment_root"
+              sequence="0"/>
+</odoo>
