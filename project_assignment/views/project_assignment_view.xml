@@ -6,8 +6,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="project_name"/>
-                <!--                <field name="ref" optional="hide"/>-->
-                <!--                <field name="gender"/>-->
+                <field name="weighting"/>
             </tree>
         </field>
     </record>
@@ -22,22 +21,21 @@
                         <group>
                             <field name="project_name" default_focus="1"/>
                         </group>
+                        <group>
+                            <field name="weighting"/>
+                        </group>
                     </group>
 
                     <notebook>
                         <page string="Employees" name="employees">
-                            <field name="employees_list_ids">
-                                <tree editable="bottom">
-                                    <field name="employee_id"/>
-                                    <field name="weighting"/>
-                                </tree>
-                                <form>
-                                    <group>
-                                        <field string="Employees" name="employee_id"/>
-                                        <field name="weighting"/>
-                                    </group>
-                                </form>
-                            </field>
+                            <!--                            <tree editable="bottom">-->
+                            <!--                                <field name="employees_list_ids"/>-->
+                            <!--                            </tree>-->
+                            <form>
+                                <group>
+                                    <field string="List of employees" name="employees_list_ids"/>
+                                </group>
+                            </form>
                         </page>
                     </notebook>
                 </sheet>
